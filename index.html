@@ -1,0 +1,426 @@
+
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#24372f">
+<title>Для моего Данила</title>
+<style>
+:root {
+  --forest: #24372f;
+  --green: #496353;
+  --paper: #f5f3eb;
+  --white: #fffefa;
+  --ink: #29372f;
+  --muted: #7b8178;
+  --line: #dedfd5;
+}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: Georgia, "Times New Roman", serif;
+  line-height: 1.75;
+}
+button { font: inherit; cursor: pointer; }
+.hero {
+  background: var(--forest);
+  color: #f8f6ed;
+  padding: 60px 24px 54px;
+  text-align: center;
+}
+.eyebrow {
+  font: 11px/1.5 Arial, sans-serif;
+  letter-spacing: 3px;
+  color: #c8cbbb;
+  text-transform: uppercase;
+}
+.hero h1 {
+  font-size: clamp(36px, 8vw, 58px);
+  line-height: 1.15;
+  font-weight: normal;
+  margin: 24px 0 16px;
+}
+.hero p {
+  max-width: 420px;
+  margin: auto;
+  color: #e0e2d8;
+}
+.hero .rule {
+  width: 46px;
+  height: 1px;
+  background: #aab4a5;
+  margin: 26px auto;
+}
+main {
+  max-width: 760px;
+  margin: auto;
+  padding: 28px 18px 60px;
+}
+nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  justify-content: center;
+  margin: 0 auto 32px;
+}
+nav button {
+  border: 1px solid var(--line);
+  border-radius: 3px;
+  background: var(--white);
+  color: var(--ink);
+  padding: 9px 13px;
+  font: 12px Arial, sans-serif;
+  transition: .2s;
+}
+nav button:hover, nav button.active {
+  background: var(--forest);
+  border-color: var(--forest);
+  color: white;
+}
+.panel { display: none; animation: appear .3s ease; }
+.panel.active { display: block; }
+@keyframes appear {
+  from { opacity: 0; transform: translateY(5px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.section-head { margin: 0 0 24px; }
+.section-head .eyebrow { color: var(--green); }
+h2 {
+  font-size: clamp(27px, 5vw, 36px);
+  line-height: 1.25;
+  font-weight: normal;
+  margin: 8px 0;
+}
+.intro { color: var(--muted); font-size: 15px; }
+.paper {
+  background: var(--white);
+  border: 1px solid var(--line);
+  border-radius: 5px;
+  padding: clamp(20px, 5vw, 38px);
+}
+.paper p { white-space: pre-line; }
+.letter-body { font-size: 17px; }
+.signature { color: var(--green); margin-top: 28px; }
+.letter-card, .reason {
+  background: var(--white);
+  border: 1px solid var(--line);
+  margin-bottom: 10px;
+  border-radius: 4px;
+}
+.letter-toggle {
+  width: 100%;
+  display: flex;
+  gap: 15px;
+  align-items: center;
+  text-align: left;
+  border: 0;
+  background: transparent;
+  padding: 17px;
+  color: var(--ink);
+}
+.envelope {
+  width: 44px;
+  height: 44px;
+  background: #e8e9df;
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+  font-size: 21px;
+}
+.letter-name { flex: 1; line-height: 1.5; }
+.letter-hint {
+  display: block;
+  color: var(--muted);
+  font: 11px Arial, sans-serif;
+  margin-top: 5px;
+}
+.arrow { color: var(--green); font-size: 20px; }
+.letter-content {
+  display: none;
+  padding: 0 20px 24px;
+}
+.letter-card.open .letter-content { display: block; }
+.letter-content p { white-space: pre-line; }
+.reason {
+  display: flex;
+  gap: 17px;
+  align-items: baseline;
+  padding: 14px 17px;
+  margin-bottom: 8px;
+}
+.number {
+  color: var(--green);
+  font: 12px Arial, sans-serif;
+  min-width: 24px;
+}
+.small-note {
+  font-size: 14px;
+  color: var(--muted);
+}
+.back-top {
+  display: block;
+  margin: 26px auto 0;
+  border: 0;
+  background: transparent;
+  color: var(--green);
+  font: 12px Arial, sans-serif;
+  padding: 10px;
+}
+footer {
+  background: var(--forest);
+  color: #e3e4d9;
+  padding: 30px 20px;
+  text-align: center;
+  font-size: 14px;
+}
+footer .small { color: #bfc6b9; font-size: 11px; }
+@media(min-width:600px) {
+  .hero { padding-top: 78px; padding-bottom: 70px; }
+  main { padding-top: 38px; }
+}
+@media(prefers-reduced-motion:reduce) {
+  *, *::before, *::after {
+    scroll-behavior: auto !important;
+    animation: none !important;
+    transition: none !important;
+  }
+}
+</style>
+</head>
+<body>
+<header class="hero" id="top">
+  <div class="eyebrow">Лично для тебя</div>
+  <h1>Для моего Данила.</h1>
+  <div class="rule"></div>
+  <p>Несколько слов, воспоминаний и писем, которые я хочу сохранить для тебя.</p>
+</header>
+
+<main>
+  <nav aria-label="Разделы сайта">
+    <button class="active" data-page="home">Главная</button>
+    <button data-page="letter">Моё письмо</button>
+    <button data-page="reasons">25 причин</button>
+    <button data-page="letters">Открой, когда…</button>
+  </nav>
+
+  <section class="panel active" id="home">
+    <div class="section-head">
+      <div class="eyebrow">Наш маленький мир</div>
+      <h2>Тебе, с любовью.</h2>
+      <p class="intro">Выбери то, что тебе хочется открыть.</p>
+    </div>
+    <div class="letter-card">
+      <button class="letter-toggle" data-go="letter">
+        <span class="envelope">✉</span>
+        <span class="letter-name">Моё письмо<span class="letter-hint">Личные слова для тебя</span></span>
+        <span class="arrow">↗</span>
+      </button>
+    </div>
+    <div class="letter-card">
+      <button class="letter-toggle" data-go="reasons">
+        <span class="envelope">25</span>
+        <span class="letter-name">25 причин<span class="letter-hint">За что я благодарна Богу за тебя</span></span>
+        <span class="arrow">↗</span>
+      </button>
+    </div>
+    <div class="letter-card">
+      <button class="letter-toggle" data-go="letters">
+        <span class="envelope">✉</span>
+        <span class="letter-name">Открой, когда…<span class="letter-hint">Семь писем для разных моментов</span></span>
+        <span class="arrow">↗</span>
+      </button>
+    </div>
+    <div class="paper" style="margin-top:22px;text-align:center">
+      <p>Даже на расстоянии я рядом с тобой. 🤍</p>
+    </div>
+  </section>
+
+  <section class="panel" id="letter">
+    <div class="section-head">
+      <div class="eyebrow">Письмо № 01</div>
+      <h2>Для моего Данила</h2>
+      <p class="intro">Самые важные слова — от сердца.</p>
+    </div>
+    <article class="paper letter-body">
+      <p>Мой дорогой Данил🥹❤️</p>
+      <p>Сегодня твой день и я очень рада, что 25 лет назад родился ты🥹❤️</p>
+      <p>Буквально несколько часов назад я сказала: Господи, спасибо за Даника🥰</p>
+      <p>И так я говорю уже на протяжении 3 месяцев)</p>
+      <p>Казалось бы, какой маленький срок, но за такой короткий промежуток времени ты стал для меня очень дорогим человеком🤍 Я могу доверить тебе буквально все, и не пожалеть, что так сделала. Знай, что я этим очень дорожу и верю, что так будет и дальше.</p>
+      <p>Мне очень нравится, какой ты) Мне нравится, как ты относишься к другим людям, как ты любишь детей, как общаешься и заботишься о своих родных. Мне очень нравится, как ты поддерживаешь меня во время, всегда интересуешься моим состоянием, настроением, всегда стараешься его поднять. Всегда беспокоишься обо мне 🥹🥰 Спасибо тебе за все это🥰🥰🥰</p>
+      <p>Я очень рада и благодарна Богу, что ты у меня есть🥹❤️ Спасибо тебе за все, что ты делаешь для нас, спасибо за все твои советы, добрые слова, комплименты, поддержку. За все❤️ Я многому учусь у тебя и очень рада, что ты такой мудрый😘 У тебя есть много талантов, развивай их. Трудись для Бога, живи для Него и Он не оставит тебя. А я всегда поддержу тебя, выслушаю и помогу❤️ Я всегда буду рядом🤍 Молюсь о тебе🥰</p>
+      <p>Я очень сильно люблю тебя, скучаю и жду 19 декабря❤️❤️❤️</p>
+      <p class="signature">С любовью, твоя ❤️</p>
+    </article>
+  </section>
+
+  <section class="panel" id="reasons">
+    <div class="section-head">
+      <div class="eyebrow">Список благодарности</div>
+      <h2>25 причин</h2>
+      <p class="intro">За что я благодарна Богу за тебя.</p>
+    </div>
+    <div id="reason-list"></div>
+  </section>
+
+  <section class="panel" id="letters">
+    <div class="section-head">
+      <div class="eyebrow">Личные письма</div>
+      <h2>Открой, когда…</h2>
+      <p class="intro">Для разных моментов, настроений и дней. Нажми на конверт, чтобы открыть письмо.</p>
+    </div>
+    <div id="letter-list"></div>
+  </section>
+</main>
+
+<footer>
+  <p>Для моего Данила.</p>
+  <p class="small">Одному особенному человеку.</p>
+</footer>
+
+<script>
+const reasons = [
+"За то, что мы встретились",
+"За то, что ты всегда поддерживаешь меня",
+"За то, что ты молишься обо мне",
+"За то, что ты говоришь мне комплименты",
+"За то, что ты говоришь мне, как ты меня любишь",
+"За то, что даешь мне мудрые советы",
+"За то, что ты тот, кто беспокоится о моем внутреннем состоянии",
+"За то, что ты тот, кто беспокоится о моем моральном состоянии",
+"За то, что ты интересуешься моим настроением",
+"За то, что с тобой, я чувствую себя любимой",
+"За то, что ты умеешь меня выслушать",
+"За то, что ты умеешь поднять мне настроение",
+"За то, что тебе небезразлично то, что я чувствую",
+"За то, что мне есть, чему учиться у тебя",
+"За то, что ты любишь Бога",
+"За то, что ты очень добрый",
+"За то, что с тобой я могу быть собой",
+"За то, что ты стараешься ради наших отношений",
+"За то, что ты стал таким дорогим человеком для меня",
+"За то, что я могу доверять тебе",
+"За то, что даже через экран ты умеешь сделать так, чтобы я улыбалась",
+"За то, что расстояние не мешает нам становиться ближе",
+"За то, что мы можем говорить с тобой на любые темы",
+"За то, что ты мудрый",
+"За то, что ты такой, какой ты есть"
+];
+
+const letters = [
+{
+title: "Открой, когда скучаешь по мне🥹",
+text: `Данил, если ты открыл это письмо, значит сейчас ты очень скучаешь по мне🥰 Знай, что это взаимно, но очень скоро мы будем с тобой вместе🥰 Поэтому, помни, что я очень люблю тебя, жду нашего разговора и тоже скучаю❤️`
+},
+{
+title: "Открой, когда грустно",
+text: `Данил, тебе не нужно всегда быть сильным. Можно и нужно быть всегда собой. Но помни, что когда грустно тебе, то грустно и мне, поэтому, я бы очень не хотела, чтобы ты расстраивался. Очень люблю тебя и верю, что все будет хорошо ❤️ Я молюсь о тебе🙏🏽🥰`
+},
+{
+title: "Открой, когда хочешь улыбнуться",
+text: `Срочное напоминание: одна прекрасная девушка очень сильно тебя любит. А еще она очень милая, когда серьезная, но при этом Даник хочет, чтобы она улыбалась😄☺️ Поэтому, она всегда не знает, что выбрать: быть милой, или просто улыбаться😅❤️`
+},
+{
+title: "Открой, когда захочешь узнать, о чем я молюсь за тебя",
+text: `Я всегда благодарю Бога за то, что он послал в мою жизнь тебя. Всегда я прошу, чтобы он дал мудрости тебе во всем, помог в решении всех вопросов, проблем, которые есть. Молюсь о твоей духовном состоянии. Молюсь, чтобы у тебя все было хорошо ❤️
+
+Просто молюсь о тебе, потому что ты мне очень дорог🤍`
+},
+{
+title: "Открой, когда у тебя тяжелый день",
+text: `Данил, в первую очередь хочу сказать, что я тебя люблю. Я верю в тебя, верю, что все будет хорошо. Я очень ценю все, что ты делаешь для нас, спасибо тебе за все🥰 Я молюсь о тебе 🤍`
+},
+{
+title: "Открой в день нашей встречи",
+text: `Данил, я пишу это письмо и не знаю, какой сегодня день, в какое время мы встретились и как это было🙈 Мне даже трудно это представить, но я думаю, что все прошло не так, как мы себе это представляли. Мне интересно, что ты ощутил, когда увидел меня, что подумал… И как это все было) Я искренне верю, что все хорошо, надеюсь, что так и есть. Спасибо за все, что ты сделал, чтобы быть сейчас здесь. Я думаю, что время до свадьбы пройдет очень быстро, нам нужно правильно его использовать и правильно вести себя🤍 Я думаю, Бог даст мудрости и поможет нам во всем. Я тебя люблю❤️`
+},
+{
+title: "Открой просто так, без причины",
+text: `Данил, просто хотела еще раз поблагодарить тебя за то, что делаешь меня счастливой и сказать, что я очень сильно тебя люблю ❤️`
+}
+];
+
+const reasonList = document.getElementById("reason-list");
+reasons.forEach((reason, i) => {
+  const row = document.createElement("div");
+  row.className = "reason";
+  const number = document.createElement("span");
+  number.className = "number";
+  number.textContent = String(i + 1).padStart(2, "0");
+  const text = document.createElement("span");
+  text.textContent = reason;
+  row.append(number, text);
+  reasonList.appendChild(row);
+});
+
+const letterList = document.getElementById("letter-list");
+letters.forEach((letter, i) => {
+  const card = document.createElement("div");
+  card.className = "letter-card";
+  const button = document.createElement("button");
+  button.className = "letter-toggle";
+  button.setAttribute("aria-expanded", "false");
+
+  const envelope = document.createElement("span");
+  envelope.className = "envelope";
+  envelope.textContent = "✉";
+
+  const name = document.createElement("span");
+  name.className = "letter-name";
+  name.append(document.createTextNode(letter.title));
+  const hint = document.createElement("span");
+  hint.className = "letter-hint";
+  hint.textContent = "Нажми, чтобы открыть";
+  name.appendChild(hint);
+
+  const arrow = document.createElement("span");
+  arrow.className = "arrow";
+  arrow.textContent = "+";
+
+  button.append(envelope, name, arrow);
+
+  const content = document.createElement("div");
+  content.className = "letter-content";
+  const paragraph = document.createElement("p");
+  paragraph.textContent = letter.text;
+  content.appendChild(paragraph);
+
+  const signature = document.createElement("p");
+  signature.className = "signature";
+  signature.textContent = "С любовью, твоя ❤️";
+  content.appendChild(signature);
+
+  button.addEventListener("click", () => {
+    const isOpen = card.classList.toggle("open");
+    button.setAttribute("aria-expanded", String(isOpen));
+    hint.textContent = isOpen ? "Нажми, чтобы закрыть" : "Нажми, чтобы открыть";
+    arrow.textContent = isOpen ? "−" : "+";
+  });
+
+  card.append(button, content);
+  letterList.appendChild(card);
+});
+
+function showPage(id) {
+  document.querySelectorAll(".panel").forEach(panel => {
+    panel.classList.toggle("active", panel.id === id);
+  });
+  document.querySelectorAll("nav button").forEach(button => {
+    button.classList.toggle("active", button.dataset.page === id);
+  });
+  window.scrollTo({ top: 0, behavior: "smooth" });
+}
+
+document.querySelectorAll("nav button").forEach(button => {
+  button.addEventListener("click", () => showPage(button.dataset.page));
+});
+document.querySelectorAll("[data-go]").forEach(button => {
+  button.addEventListener("click", () => showPage(button.dataset.go));
+});
+</script>
+</body>
+</html>
